@@ -53,12 +53,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text">pwd</div>
           </div>
-          <%= f.text_field :password, class: 'form-control', type: 'password', id: "inputPassword", name: 'password', 'data-bv-identical': "true", 'data-bv-identical-field': "confirmPassword",       'data-bv-identical-message': "The password and its confirm are not the same", required: true %>
-          <div class="form-group">
-            <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm Password" name="confirmPassword" data-bv-identical="true"
-                data-bv-identical-field="password"
-                data-bv-identical-message="The password and its confirm are not the same" required>
-          </div>
+          <%= f.text_field :password, class: 'form-control', type: 'password', required: true %>
         </div>
       </div>
       <div class="card-footer text-right">

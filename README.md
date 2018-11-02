@@ -6,7 +6,7 @@ Dear moussaillon,
 
 Attaché à ce repo se trouve l'app <strong>gossip-fessebouc-style</strong>
 
-Tu trouveras [ici](https://gossip-fessebouc-style.com/) la version online de l'application sur Heroku
+Tu trouveras [ici](https://gossip-fessebouc-style.herokuapp.com/) la version online de l'application sur Heroku
 
 ### Travail réalisé par
 --------------------------------------------------
