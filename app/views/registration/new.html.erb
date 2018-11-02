@@ -8,8 +8,8 @@
         <h3 class='font-weight-bold'>Log In</h3>
           <small>if you already have a user account</small>
       </div>
+      <%= form_for @user, class: 'form-group', url: {action: :sign_in} do |f| %>
       <div class="card-body">
-        <%= form_for @user, class: 'form-group', url: {action: :log_in} do |f| %>
         <div class="p-2 mt-4 input-group">
           <div class="input-group-prepend ">
             <div class="input-group-text">@email</div>
@@ -26,8 +26,8 @@
       </div>
       <div class="card-footer text-right">
         <%= f.submit 'Log In', class: 'btn btn-primary' %>
+        <% end %>
       </div>
-      <% end %>
     </div>
 
     <div class="card w-25 border border-info ml-3">
@@ -35,8 +35,8 @@
         <h3 class='font-weight-bold'>Sign Up</h3>
           <small>Create a New User</small>
       </div>
+      <%= form_for @user, class: 'form-group', role: "form", url: {action: :sign_in}, method: 'post' do |f| %>
       <div class="card-body">
-        <%= form_for @user, class: 'form-group', role: "form", 'data-toggle':"validator", url: {action: :log_in}, method: 'post' do |f| %>
         <div class="p-2 input-group">
           <div class="input-group-prepend">
             <div class="input-group-text">Name</div>
@@ -47,7 +47,7 @@
           <div class="input-group-prepend">
             <div class="input-group-text">@email</div>
           </div>
-          <%= f.text_field :email, class: 'form-control', required: true  %>
+          <%= f.text_field :email, class: 'form-control', required: true %>
         </div>
         <div class="p-2 input-group">
           <div class="input-group-prepend">

@@ -1,29 +1,32 @@
 class RegistrationController < ApplicationController
-  attr_accessor :log_user
-
   def new
     @user = User.new
   end
 
+  def sign_in
+    if params[:commit] == 'Sign Up' && !create
+      flash[:alert] = "Something went wrong. New user couldn't be created => #{@user.errors.full_messages}"
+      redirect_to registration_new_path
+    else
+      log_in ? (redirect_to gossips_path) : (redirect_to registration_new_path)
+    end
+  end
+
   def log_in
-    create if params[:commit] == 'Sign Up'
     @user = User.find_by(email: params[:user][:email])
     if @user.password == params[:user][:password]
       User.all.each { |user| user.update(is_logged: user.id == @user.id) }
-      redirect_to gossips_path
+      flash[:success] = "You're now logged as #{@user.name}"
+      true
     else
-      render :new, alert: "Something went wrong. New user couldn't be created"
+      flash[:alert] = "Log in failed, password and email don't match."
+      false
     end
   end
 
   def create
-    @gossip = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
-    @user = User.new
-    if @gossip.save
-      flash[:success] = "User has been successfully created"
-    else
-      flash[:alert] = "Something went wrong. New user couldn't be created"
-    end
+    @user = User.new(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
+    @user.save
   end
 
   def log_out

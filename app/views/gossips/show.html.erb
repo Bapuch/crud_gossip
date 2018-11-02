@@ -51,7 +51,6 @@
           <footer class='blockquote-footer'><%= comment.created_at.strftime("%e %b %y - %H:%M:%S") %></footer>
         </blockquote>
       </div>
-      
       <div class='card-footer'>
         <% comment.sub_comments.each do |sub_comment| %>
           <div class='card'>

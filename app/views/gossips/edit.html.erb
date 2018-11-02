@@ -6,9 +6,9 @@
 
 <div class="jumbotron text-center bg-primary mb-0">
   <div class="align-middle">
+    <%= form_for @gossip, class: "form-group" do |f| %>
       <div class="d-flex justify-content-between align-items-center col-xs-3 col-sm-4 col-md-4 col-lg-4 col-xl-4 mb-3">
-        <div class=''>
-          <%= form_for @gossip, class: "form-group" do |f| %>
+        <div>
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text bg-light text-primary" id="basic-addon1">Title</span>
@@ -29,9 +29,7 @@
           </div>
           <%= f.text_area :content, class: "form-control", rows: "4", placeholder: :content, required: true %>
         </div>
-        <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
-

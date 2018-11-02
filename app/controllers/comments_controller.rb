@@ -21,8 +21,4 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:content, :user)
   end
-
-  def current_user
-    @current_user ||= User.find_by(is_logged: true) if !User.find_by(is_logged: true).nil?
-  end
 end

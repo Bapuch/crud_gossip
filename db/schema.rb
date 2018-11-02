@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_105449) do
     t.text "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_logged", default: true
+    t.boolean "is_logged", default: false
   end
 
   add_foreign_key "comments", "gossips"

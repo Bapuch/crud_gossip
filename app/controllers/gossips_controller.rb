@@ -23,10 +23,14 @@ class GossipsController < ApplicationController
   end
 
   def show
-    @gossip = Gossip.find(params[:id])
-    @comment = Comment.new
-    @current_user = current_user
-    @like = Like.new
+    if Gossip.where(id: params[:id]).exists?
+      @gossip = Gossip.find(params[:id])
+      @comment = Comment.new
+      @current_user = current_user
+      @like = Like.new
+    else
+      redirect_to root_path, alert: "Sorry, Gossip ##{params[:id]} does not exist"
+    end
   end
 
   def edit
@@ -64,9 +68,5 @@ class GossipsController < ApplicationController
 
   def gossip_params
     params.require(:gossip).permit(:title, :content)
-  end
-
-  def current_user
-    @current_user ||= User.find_by(is_logged: true) if !User.find_by(is_logged: true).nil?
   end
 end
