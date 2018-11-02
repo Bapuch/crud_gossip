@@ -1,0 +1,37 @@
+
+<div class="jumbotron card text-center bg-light border-primary mb-0">
+    <h1 class='card-title text-primary text-capitalize font-weight-bold'>edit gossip #<%= @gossip.id%></h1>
+    <p class='lead font-italic text-dark text-capitalize'>by <%= @gossip.user.name %> - <%= @gossip.created_at.strftime("%e %b %y - %H:%M:%S")%></p>
+</div>
+
+<div class="jumbotron text-center bg-primary mb-0">
+  <div class="align-middle">
+      <div class="d-flex justify-content-between align-items-center col-xs-3 col-sm-4 col-md-4 col-lg-4 col-xl-4 mb-3">
+        <div class=''>
+          <%= form_for @gossip, class: "form-group" do |f| %>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-light text-primary" id="basic-addon1">Title</span>
+            </div>
+            <%= f.text_field :title, class: "form-control", placeholder: :title, disabled: true%><br>
+          </div>
+        </div>
+        <div class="d-flex align-items-center">
+          <div>
+          <%= f.submit 'Edit', class: 'btn btn-outline-light btn-lg' %>
+          </div>
+        </div>
+      </div>
+      <div class='col-xs-6 col-sm-12 col-md-10 col-lg-8 col-xl-8'>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-light text-primary">Gossip</span>
+          </div>
+          <%= f.text_area :content, class: "form-control", rows: "4", placeholder: :content, required: true %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

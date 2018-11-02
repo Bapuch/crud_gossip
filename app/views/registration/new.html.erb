@@ -1,0 +1,70 @@
+<div class="bg-light">
+  <h1 class="text-uppercase text-center">registration</h1>
+</div>
+<div container="text-center">
+  <div class="container-fluid d-flex justify-content-center">
+    <div class="card w-25 border border-info mr-3" >
+      <div class="card-header bg-info text-light">
+        <h3 class='font-weight-bold'>Log In</h3>
+          <small>if you already have a user account</small>
+      </div>
+      <div class="card-body">
+        <%= form_for @user, class: 'form-group', url: {action: :log_in} do |f| %>
+        <div class="p-2 mt-4 input-group">
+          <div class="input-group-prepend ">
+            <div class="input-group-text">@email</div>
+          </div>
+          <%= f.text_field :email, class: 'form-control', required: true  %>
+        </div>
+
+        <div class="p-2 input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">pwd</div>
+          </div>
+          <%= f.text_field :password, class: 'form-control', type: 'password', required: true %>
+        </div>
+      </div>
+      <div class="card-footer text-right">
+        <%= f.submit 'Log In', class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+
+    <div class="card w-25 border border-info ml-3">
+      <div class="card-header bg-info text-light">
+        <h3 class='font-weight-bold'>Sign Up</h3>
+          <small>Create a New User</small>
+      </div>
+      <div class="card-body">
+        <%= form_for @user, class: 'form-group', role: "form", 'data-toggle':"validator", url: {action: :log_in}, method: 'post' do |f| %>
+        <div class="p-2 input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">Name</div>
+          </div>
+          <%= f.text_field :name, class: 'form-control', required: true  %>
+        </div>
+        <div class="p-2 input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">@email</div>
+          </div>
+          <%= f.text_field :email, class: 'form-control', required: true  %>
+        </div>
+        <div class="p-2 input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">pwd</div>
+          </div>
+          <%= f.text_field :password, class: 'form-control', type: 'password', id: "inputPassword", name: 'password', 'data-bv-identical': "true", 'data-bv-identical-field': "confirmPassword",       'data-bv-identical-message': "The password and its confirm are not the same", required: true %>
+          <div class="form-group">
+            <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm Password" name="confirmPassword" data-bv-identical="true"
+                data-bv-identical-field="password"
+                data-bv-identical-message="The password and its confirm are not the same" required>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-right">
+        <%= f.submit 'Sign Up', class: 'btn btn-primary' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

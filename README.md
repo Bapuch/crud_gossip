@@ -1,24 +1,23 @@
-# README
+## Exercice du Jeudi 1er Novembre - I :heart:  Gossips
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Greetings
+--------------------------------------------------
+Dear moussaillon,
 
-Things you may want to cover:
+Attaché à ce repo se trouve l'app <strong>gossip-fessebouc-style</strong>
 
-* Ruby version
+Tu trouveras [ici](https://gossip-fessebouc-style.com/) la version online de l'application sur Heroku
 
-* System dependencies
+### Travail réalisé par
+--------------------------------------------------
+Noms | Pseudo Slack
+------------ | -------------
+Maëlle Ngachili|@Maëlle
 
-* Configuration
+### Notes
+--------------------------------------------------
 
-* Database creation
+Certaines pages ont besoin d'être rafraichie avant de pouvoir utiliser les boutons
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Bonne correction ! :poop:
+--------------------------------------------------

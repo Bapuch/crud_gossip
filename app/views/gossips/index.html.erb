@@ -1,0 +1,33 @@
+<div class='card-body border border-primary rounded m-2 p-3'>
+  <h2 class="text-capitalize font-weight-bold text-dark">list of gossips</h2>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+      <th scope="col" class="text-info">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col">Creation</th>
+      <th scope="col">Last Update</th>
+      <th scope="col">Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @gossips.each do |gossip| %>
+      <tr>
+        <th scope="row" class="text-info"><%= gossip.id %></th>
+        <td class="text-capitalize"><%= gossip.user.name %></td>
+        <td><%= gossip.title %></td>
+        <td><%= gossip.content %></td>
+        <td class='small'><%= gossip.created_at.strftime("%e %b %y - %H:%M:%S") %></td>
+        <td class='small'><%= gossip.updated_at.strftime("%e %b %y - %H:%M:%S") %></td>
+        <td>
+          <span class="badge badge-danger"> <%= gossip.likes.count %> <img src="https://cdn.iconscout.com/icon/free/png-256/heart-like-love-blue-37839.png" width=15 heigth=15></span>
+          <%= link_to 'Link', gossip_path(gossip.id), class: 'btn btn-success' %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <a href="<%= new_gossip_path %>" class='btn btn-primary btn-lg text-capitalize'>create a new gossip</a>
+</div>

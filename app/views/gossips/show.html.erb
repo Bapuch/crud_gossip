@@ -1,0 +1,70 @@
+<div class="jumbotron card text-center bg-primary">
+  <h1 class='card-title text-light text-capitalize font-weight-bold'>gossip #<%= @gossip.id%></h1>
+  <p><span class="badge badge-danger"> <%= @gossip.likes.count %> <img src="https://cdn.iconscout.com/icon/free/png-256/heart-like-love-blue-37839.png" width=15 heigth=15></span></p>
+  <p class='lead font-italic text-dark text-uppercase'>by <%= @gossip.user.name %> - <%= @gossip.created_at.strftime("%e %b %y - %H:%M:%S") %></p>
+  <hr class="my-4">
+  <p class='lead text-light text-capitalize font-weight-bold'><%= @gossip.title%></p>
+  <p class='lead text-light'><%= @gossip.content%></p>
+  <div class='form-group'>
+    <a href="<%= gossips_path %>" class="btn btn-primary" data-method="GET">Back To Gossips</a>
+    <a href="<%= edit_gossip_path(@gossip.id) %>" class="btn btn-primary" data-method="GET">Edit</a>
+    <a href="<%= gossip_path(@gossip.id) %>" class="btn btn-danger" data-confirm="The gossip will be deleted" data-method="DELETE">Delete</a>
+    <% if @current_user %>
+      <% if @current_user.likes.where(gossip_id: @gossip.id).count != 0 %>
+        <%= link_to 'Unlike', likes_path(like: { gossip_id: @gossip.id, user_id: @current_user.id}), class: 'btn btn-success', method: 'delete' %>
+      <% else %>
+        <%= link_to 'Like', likes_path(like: { gossip_id: @gossip.id, user_id: @current_user.id}), class: 'btn btn-success', method: 'post' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class='container'>
+  <h3>Comments</h3>
+  <hr>
+  <div>
+    <%= form_for @comment, class: "form-group" do |f| %>
+      <%= f.text_field :content, class: "form-control", placeholder: "Wubba lubba dub dub", required: true%>
+      <%= f.submit 'Comment', class: 'btn btn-primary' %>
+      <%= f.hidden_field :gossip_id, value: @gossip.id %>
+    <% end %>
+  </div>
+  <hr>
+  <% @gossip.comments.where(related_comment_id: nil).each do |comment| %>
+    <div class='card'>
+      <div class='card-header'>
+        <div class='row justify-content-between pr-5 pl-5'>
+          <div class='card-title'><%= comment.user.name %> : </div>
+          <div class='form-inline'>
+          <%= form_for @comment, class: "form-group" do |f| %>
+            <%= f.text_field :content, class: 'form-control' %>
+            <%= f.submit 'Reply', class: 'btn btn-primary' %>
+            <%= f.hidden_field :gossip_id, value: @gossip.id %>
+            <%= f.hidden_field :related_comment_id, value: comment.id %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+      <div class='card-body'>
+        <blockquote class='blockquote mb-0'>
+          <p><%= comment.content %></p>
+          <footer class='blockquote-footer'><%= comment.created_at.strftime("%e %b %y - %H:%M:%S") %></footer>
+        </blockquote>
+      </div>
+      
+      <div class='card-footer'>
+        <% comment.sub_comments.each do |sub_comment| %>
+          <div class='card'>
+            <div class='card-body'>
+                <p><%= sub_comment.content %></p>
+              <blockquote class='blockquote mb-0'>
+                <footer class='blockquote-footer'> by <%= sub_comment.user.name %> - <%= sub_comment.created_at.strftime("%e %b %y - %H:%M:%S") %></footer>
+              </blockquote>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <br>
+  <% end %>
+</div>

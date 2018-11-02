@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'registration/new', to: 'registration#new'
+  post 'registration/new', to: 'registration#log_in'
+  put 'registration/new', to: 'registration#log_out'
+  post 'likes', to: 'likes#create'
+  delete 'likes', to: 'likes#delete'
+  root 'gossips#home'
+  resources :gossips
+  resources :comments
 end
